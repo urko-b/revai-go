@@ -9,11 +9,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/oriiolabs/revai-go"
+	"github.com/urko-b/revai-go"
 )
 
 func main() {
-
 	rev_token := os.Getenv("REV_TOKEN")
 	if rev_token == "" {
 		fmt.Println("Please set REV_TOKEN enviroment variable")
@@ -52,7 +51,6 @@ func main() {
 	}()
 
 	f, err := os.Open("test_data.wav")
-
 	if err != nil {
 		panic(err)
 	}
@@ -76,5 +74,4 @@ func main() {
 	}
 
 	conn.Close()
-
 }
