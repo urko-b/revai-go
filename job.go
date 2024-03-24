@@ -53,12 +53,16 @@ type JobOptions struct {
 	CustomVocabularies   []JobOptionCustomVocabulary `json:"custom_vocabularies"`
 	Language             string                      `json:"language,omitempty"`
 	Transcriber          string                      `json:"transcriber,omitempty"`
-	TranslationConfig    struct {
-		TargetLanguages []struct {
-			Language string `json:"language,omitempty"`
-			Model    string `json:"model,omitempty"`
-		} `json:"target_languages,omitempty"`
-	} `json:"translation_config,omitempty"`
+	TranslationConfig    JobOptionTranslationConfig  `json:"translation_config,omitempty"`
+}
+
+type JobOptionTranslationConfig struct {
+	TargetLanguages []JobOptionTranslationConfigTargetLanguages `json:"target_languages,omitempty"`
+}
+
+type JobOptionTranslationConfigTargetLanguages struct {
+	Language string `json:"language,omitempty"`
+	Model    string `json:"model,omitempty"`
 }
 
 type JobOptionCustomVocabulary struct {
