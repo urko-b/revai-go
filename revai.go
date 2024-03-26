@@ -20,10 +20,19 @@ const (
 )
 
 const (
-	XSubripHeader           = "application/x-subrip"
-	TextVTTHeader           = "text/vtt"
-	TextPlainHeader         = "text/plain"
-	RevTranscriptJSONHeader = "application/vnd.rev.transcript.v1.0+json"
+	xSubripHeader           = "application/x-subrip"
+	textVTTHeader           = "text/vtt"
+	textPlainHeader         = "text/plain"
+	revTranscriptJSONHeader = "application/vnd.rev.transcript.v1.0+json"
+)
+
+type AcceptHeader string
+
+const (
+	AcceptHeaderPlain   = textPlainHeader
+	AcceptHeaderVTT     = textVTTHeader
+	AcceptHeaderSRRT    = xSubripHeader
+	AcceptHeaderRevJSON = revTranscriptJSONHeader
 )
 
 type service struct {

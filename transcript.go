@@ -48,7 +48,7 @@ func (s *TranscriptService) Get(ctx context.Context, params *GetTranscriptParams
 		return nil, fmt.Errorf("failed creating request %w", err)
 	}
 
-	req.Header.Add("Accept", RevTranscriptJSONHeader)
+	req.Header.Add("Accept", revTranscriptJSONHeader)
 
 	var transcript Transcript
 	if err := s.client.doJSON(ctx, req, &transcript); err != nil {
@@ -73,7 +73,7 @@ func (s *TranscriptService) GetText(ctx context.Context, params *GetTranscriptPa
 		return nil, fmt.Errorf("failed creating request %w", err)
 	}
 
-	req.Header.Add("Accept", TextPlainHeader)
+	req.Header.Add("Accept", textPlainHeader)
 
 	resp, err := s.client.do(ctx, req)
 	if err != nil {
