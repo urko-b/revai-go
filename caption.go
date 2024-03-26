@@ -58,7 +58,7 @@ func (s *CaptionService) Get(ctx context.Context, params *GetCaptionParams) (*Ca
 	return &caption, nil
 }
 
-func (s *CaptionService) Translation(ctx context.Context, targetLanguage string, params *GetCaptionParams) (*Caption, error) {
+func (s *CaptionService) GetTranslation(ctx context.Context, targetLanguage string, params *GetCaptionParams) (*Caption, error) {
 	urlPath := "/speechtotext/v1/jobs/" + params.JobID + "/captions/translation" + targetLanguage
 
 	if params.Accept == "" {

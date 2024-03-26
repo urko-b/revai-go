@@ -92,3 +92,33 @@ func (s *TranscriptService) GetText(ctx context.Context, params *GetTranscriptPa
 
 	return &transcript, nil
 }
+
+// GetTranslation returns the translated transcript on language sepcified for a completed transcription job in text format.
+// https://docs.rev.ai/api/asynchronous/reference/#operation/GetTranscriptById
+func (s *TranscriptService) GetTranslation(ctx context.Context, targetLanguage string, params *GetTranscriptParams) (*TextTranscript, error) {
+	urlPath := "/speechtotext/v1/jobs/" + params.JobID + "/transcript/translation" + targetLanguage
+
+	req, err := s.client.newRequest(http.MethodGet, urlPath, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed creating request %w", err)
+	}
+
+	req.Header.Add("Accept", textPlainHeader)
+
+	resp, err := s.client.do(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	buf := new(bytes.Buffer)
+	if _, err := io.Copy(buf, resp.Body); err != nil {
+		return nil, err
+	}
+
+	transcript := TextTranscript{
+		Value: buf.String(),
+	}
+
+	return &transcript, nil
+}
